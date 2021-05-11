@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+app.use(express.json());
+app.use(require("./api"));
+
 //connecting to mongodb database
 const db = "mongodb://localhost/todos";
 mongoose.connect(db,
@@ -11,4 +14,4 @@ mongoose.connect(db,
 .catch(err=>console.log("Fail to connect to mongodb", err));
 
 const port = process.env.PORT || 5000;
-app.listen(port, ()=>`listening at port${port}...`)
+app.listen(port, ()=>console.log(`listening at port ${port}...`))
