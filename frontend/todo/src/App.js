@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import { useState, useRef } from "react";
 import './App.css';
 
+import Todo from "./components/Todo/Todo";
+
 function App() {
+  const [todos, setTodos] = useState([]);
+  const [inputVal, setInputVal] = useState("");
+  const inputEl = useRef(null);
+
+  const addTodo = ()=>{
+    //reset input field
+    inputEl.current.value = "";
+    setInputVal("");
+
+    setTodos([...todos, inputVal])
+    console.log(todos)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo App</h1>
+      <section className="main-wrapper">
+        <div className="first-input-con">
+          <input ref={inputEl}
+            onChange={e => setInputVal(e.target.value)}
+            placeholder="Enter todo" />
+          <button onClick={addTodo}>Create Todo</button>
+        </div>
+        {todos.map((todo, i) => <Todo
+          //updateTodos={(_id, todo) => updateTodo(_id, todo)}
+          todo={todo} key={i} />)}
+      </section>
     </div>
   );
 }
