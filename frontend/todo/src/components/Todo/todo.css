@@ -1,0 +1,22 @@
+.sec1{
+    display: flex;
+    height: 50px;
+    border:1px solid #fff;
+    align-items: center;
+}
+.sec1 input{
+    height: 30px;
+    width: 30px;
+    margin:0 25px;
+}
+.input2-con{
+    display:flex;
+    justify-content: space-between;
+    margin: auto;
+    width:60%;
+    height: 30px;
+    border:1px solid #fff;
+}
+.input2-con input{
+    width: 70%;
+}

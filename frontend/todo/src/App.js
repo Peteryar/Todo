@@ -13,7 +13,7 @@ function App() {
     inputEl.current.value = "";
     setInputVal("");
 
-    setTodos([...todos, inputVal])
+    setTodos([...todos, { title: inputVal, subtasks: [] }])
     console.log(todos)
   }
   return (
