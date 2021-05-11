@@ -30,7 +30,7 @@ const todoSchema = new mongoose.Schema({
         type:String,
         default:"pending",
     },
-    createdDate:{
+    created_at:{
         type:Date,
         default:Date.now
     },
