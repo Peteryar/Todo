@@ -1,22 +1,36 @@
 .sec1{
     display: flex;
     height: 50px;
+    justify-content: space-between;
     border:1px solid #fff;
     align-items: center;
+    padding:0 30px;
 }
-.sec1 input{
-    height: 30px;
-    width: 30px;
-    margin:0 25px;
+.sec1-first{
+    display: flex;
+    align-items: center;
 }
-.input2-con{
-    display:flex;
-    justify-content: space-between;
-    margin: auto;
-    width:60%;
+.sec1-first input{
+    margin-right: 20px;
+    width:30px;
     height: 30px;
+}
+.sec2{
+    display: none;
+}
+.sec2-input-con{
+    display: flex;
+    margin:auto;
     border:1px solid #fff;
+    width:70%;
+    padding-left: 20px;
+    justify-content: space-between;
+    height: 50px;
 }
-.input2-con input{
-    width: 70%;
+.sec2-input-con input{
+    background: none;
+    border:none;
+    outline: none;
+    color:#fff;
+    width:80%;
 }

@@ -1,0 +1,14 @@
+.subtask-con{
+    width:70%;
+    height:40px;
+    display:flex;
+    border:1px solid #fff;
+    margin:0 auto;
+    align-items: center;
+    padding-left: 20px;
+}
+.subtask-con input{
+   margin-right: 20px;
+   width: 20px;
+   height: 20px;
+}
