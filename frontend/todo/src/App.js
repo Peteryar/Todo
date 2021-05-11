@@ -1,5 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import './App.css';
+import postData from "./Util";
 
 import Todo from "./components/Todo/Todo";
 
@@ -9,13 +10,22 @@ function App() {
   const inputEl = useRef(null);
 
   const addTodo = ()=>{
-    //reset input field
     inputEl.current.value = "";
     setInputVal("");
 
     setTodos([...todos, { title: inputVal, subtasks: [] }])
-    console.log(todos)
+    
+    postData("http://localhost:5000/add-todo", { title: inputVal })
+      .then((data) => console.log("fromAPI", data))
   }
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/todos`)
+    .then(response => response.json())
+    .then(data => setTodos(data))
+    .catch(error => console.log(error.messsage))
+  }, [])
+
   return (
     <div className="App">
       <h1>Todo App</h1>

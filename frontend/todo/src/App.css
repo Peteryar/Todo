@@ -17,6 +17,7 @@
 .first-input-con{
   display: flex;
   justify-content: space-between;
+  margin-bottom:30px;
 }
 .first-input-con input{
   width: 60%;
