@@ -37,6 +37,6 @@ const todoSchema = new mongoose.Schema({
     subtasks:[subTaskSchema]
 })
 
-const Todo = mongoose.model("Task", todoSchema);
+const Todo = mongoose.model("Todo", todoSchema);
 
 module.exports = {Todo, SubTask}
