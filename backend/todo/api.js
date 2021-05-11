@@ -74,7 +74,7 @@ router.post("/add-subtask", async (req, res) => {
 router.post("/update-subtask", async (req, res) => {
     try {
         const { _id, subtask_id, status } = req.body;
-        if (!_id || subtask_id || status) return res.status(400)
+        if (!_id || !subtask_id || !status) return res.status(400)
             .send("please provide task id, subtask id and status");
 
         const todo = await Todo.findOne({ _id });
