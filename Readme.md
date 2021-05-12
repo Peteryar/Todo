@@ -35,7 +35,11 @@ to install dependencies require to perform api services
 1. Want to run project in a local instance of
 mongodb or your personal cloud instance of mongodb
 
-> export db="mongodb connetiontion string"
+> export db="mongodb connetion string"
+on Mac or
+> set db="mongodb connection string"
+on PC
+
 
 # start app
 1. start backend server by navigating todo directory in backend
