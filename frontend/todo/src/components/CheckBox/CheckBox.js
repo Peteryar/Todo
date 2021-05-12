@@ -1,9 +1,9 @@
-function CheckBox({doneCount, tasksCount, update, title}) {
+function CheckBox({doneCount, tasksCount, update, task}) {
     return (
         <section className="sec1-first">
-            <input checked={doneCount === tasksCount ? true : false}
+            <input checked={task.status ==="pending"?false:true}
                 onChange={(e) => update(e.target.checked ? "completed" : "pending")} type="checkbox" />
-            <p style={{ textDecoration: doneCount === tasksCount ? "line-through" : "none" }}>{title}</p>
+            <p style={{ textDecoration:task.status!=="pending"?"line-through" : "none" }}>{task.title}</p>
         </section>)
 }
 

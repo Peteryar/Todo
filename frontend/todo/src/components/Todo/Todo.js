@@ -46,13 +46,9 @@ function Todo({ todo, updateTodo }) {
     return (
         <div>
             <div className="sec1">
-                <section className="sec1-first">
-                    <input type="checkbox" />
-                    <p>{subtasks.title}</p>
-                </section>
-                {/* <CheckBox update={(status) => updateTodoStatus(status)}
-                    title={todo.title}
-                    tasksCount={subtasks.length} doneCount={doneTasksCount} /> */}
+                <CheckBox update={(status) => updateTodoStatus(status)}
+                    task={todo}
+                    tasksCount={subtasks.length} doneCount={doneTasksCount} />
                 <section className="sec1-second">
                     {subtasks.length > 0 && <p>{doneTasksCount} completed of {subtasks.length}</p>}
                     {show === "none" ? <i onClick={() => setShow("block")}

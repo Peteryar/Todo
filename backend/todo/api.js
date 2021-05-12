@@ -30,7 +30,7 @@ router.post("/update-todo", async (req, res) => {
                 status,
                 "subtasks.$[].status": status //this ensure subtasks are updated base on main task status
             }
-        }, { new: true, useFindAndModify:false });
+        }, { new: true, useFindAndModify:false }).select("-__v");
 
         res.status(200).send(todo);
 
