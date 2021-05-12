@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import "./todo.css";
 import Subtask from "../Subtask/Subtask";
 import postData from "../../Util";
+import CheckBox from "../CheckBox/CheckBox";
 
 function Todo({ todo, updateTodo }) {
     const [subtasks, setSubtasks] = useState(todo.subtasks);
@@ -25,7 +26,8 @@ function Todo({ todo, updateTodo }) {
         setSubtasks([...subtasks, { title: inputVal, status: "pending" }]);
 
         postData("http://localhost:5000/add-subtask", { _id: todo._id, title: inputVal })
-            .then((data) => setSubtasks([...data.subtasks]));
+            .then((data) => setSubtasks([...data.subtasks]))
+            .catch(err=>console.log(err))
 
         //reseting input field
         inputEl.current.value = "";
@@ -44,11 +46,9 @@ function Todo({ todo, updateTodo }) {
     return (
         <div>
             <div className="sec1">
-                <section className="sec1-first">
-                    <input checked={doneTasksCount === subtasks.length ? true : false}
-                        onChange={(e) => updateTodoStatus(e.target.checked ? "completed" : "pending")} type="checkbox" />
-                    <p style={{ textDecoration: doneTasksCount === subtasks.length ? "line-through" : "none" }}>{todo.title}</p>
-                </section>
+                <CheckBox update={(status) => updateTodoStatus(status)}
+                    title={todo.title}
+                    tasksCount={subtasks.length} doneCount={doneTasksCount} />
                 <section className="sec1-second">
                     {subtasks.length > 0 && <p>{doneTasksCount} completed of {subtasks.length}</p>}
                     {show === "none" ? <i onClick={() => setShow("block")}

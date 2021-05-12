@@ -1,6 +1,7 @@
 import "./subtask.css";
 import {useState} from "react";
 import postData from "../../Util";
+import CheckBox from "../CheckBox/CheckBox";
 
 function Subtask({ _id, subtask, updateSubtask}) {
     const updateSubtaskStatus = (status) => {
@@ -10,6 +11,7 @@ function Subtask({ _id, subtask, updateSubtask}) {
                 const updatedsubtask = subtasks[subtasks.findIndex(el => el._id === subtask._id)];
                 updateSubtask(subtask._id, updatedsubtask )
             })
+            .catch((err)=>console.log(err))
     }
     return (
         <div className="subtask-con">

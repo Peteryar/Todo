@@ -23,6 +23,7 @@ function App() {
     
     postData("http://localhost:5000/add-todo", { title: inputVal })
       .then((data) => setTodos([...todos, data]))
+      .catch(err=>console.log(err))
   }
 
   const updateTodo = (id, todo)=>{
