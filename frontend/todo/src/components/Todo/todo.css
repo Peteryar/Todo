@@ -15,6 +15,12 @@
     width:30px;
     height: 30px;
 }
+.sec1-second{
+    display: flex;
+}
+.sec1-second p{
+    margin-right: 20px;
+} 
 .sec2{
     display: none;
 }

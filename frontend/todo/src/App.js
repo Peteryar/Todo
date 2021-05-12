@@ -12,6 +12,10 @@ function App() {
   const inputEl = useRef(null);
 
   const addTodo = ()=>{
+    if(inputVal.length < 2){
+      alert("Provide valid task name");
+      return;
+    }
     inputEl.current.value = "";
     setInputVal("");
 

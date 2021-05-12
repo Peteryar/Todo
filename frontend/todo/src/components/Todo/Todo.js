@@ -7,13 +7,22 @@ function Todo({ todo, updateTodo }) {
     const [subtasks, setSubtasks] = useState(todo.subtasks);
     const [show, setShow] = useState("none");
 
-    let doneTasksCount = subtasks.filter(task=>task.status ==="completed").length;
+    let doneTasksCount = subtasks.filter(task => task.status === "completed").length;
 
     const [inputVal, setInputVal] = useState("")
     const inputEl = useRef(null);
 
+    useEffect(() => {
+        //ensures subtasks gets updated when main tasks changes;
+        setSubtasks(todo.subtasks)
+    }, [todo])
+
     const addSubtask = () => {
-        setSubtasks([...subtasks, { title: inputVal, status:"pending" }]);
+        if (inputVal.length < 2) {
+            alert("Provide Valid task name");
+            return
+        }
+        setSubtasks([...subtasks, { title: inputVal, status: "pending" }]);
 
         postData("http://localhost:5000/add-subtask", { _id: todo._id, title: inputVal })
             .then((data) => setSubtasks([...data.subtasks]));
@@ -26,7 +35,7 @@ function Todo({ todo, updateTodo }) {
     const updateTodoStatus = (status) => {
         postData("http://localhost:5000/update-todo", { _id: todo._id, status })
             .then((data) => updateTodo(todo._id, data))
-            .catch((err)=>console.log("err", err))
+            .catch((err) => console.log("err", err))
     }
     const updateSubtask = (id, task) => {
         subtasks[subtasks.findIndex(el => el._id === id)] = task;
@@ -36,11 +45,12 @@ function Todo({ todo, updateTodo }) {
         <div>
             <div className="sec1">
                 <section className="sec1-first">
-                    <input checked={todo.status === "pending" ? false : true} onChange={(e) => updateTodoStatus(e.target.checked ? "completed" : "pending")} type="checkbox" />
-                    <p style={{ textDecoration: todo.status === "pending" ? "none" : "line-through" }}>{todo.title}</p>
+                    <input checked={doneTasksCount === subtasks.length ? true : false}
+                        onChange={(e) => updateTodoStatus(e.target.checked ? "completed" : "pending")} type="checkbox" />
+                    <p style={{ textDecoration: doneTasksCount === subtasks.length ? "line-through" : "none" }}>{todo.title}</p>
                 </section>
                 <section className="sec1-second">
-                    <p>{doneTasksCount} completed of {subtasks.length}</p>
+                    {subtasks.length > 0 && <p>{doneTasksCount} completed of {subtasks.length}</p>}
                     {show === "none" ? <i onClick={() => setShow("block")}
                         className="fas fa-chevron-down"></i> :
                         <i onClick={() => setShow("none")}
