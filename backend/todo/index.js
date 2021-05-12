@@ -10,7 +10,7 @@ app.use(require("./api"));
 
 //connecting to mongodb database
 const db = process.env.db || 
-"mongodb+srv://peter:ootou_test@cluster0.7wjw7.mongodb.net/todo?retryWrites=true&w=majority"
+"mongodb+srv://peter:oozou_test@cluster0.7wjw7.mongodb.net/todo?retryWrites=true&w=majority"
 
 mongoose.connect(db,
 { useNewUrlParser: true, useUnifiedTopology: true })
