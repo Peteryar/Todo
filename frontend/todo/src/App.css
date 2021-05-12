@@ -6,13 +6,14 @@
   text-align: center;
   background-color: #282c34;
   color:#fff;
-  height: 100vh;
+  min-height: 100vh;
 }
 .main-wrapper{
   width:60%;
   display: flex;
   flex-direction: column;
-  margin:30px auto;
+  margin: auto;
+  padding: 30px 0;
 }
 .first-input-con{
   display: flex;

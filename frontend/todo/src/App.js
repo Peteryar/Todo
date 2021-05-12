@@ -6,6 +6,8 @@ import Todo from "./components/Todo/Todo";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [completed, setCompleted] = useState(0);
+
   const [inputVal, setInputVal] = useState("");
   const inputEl = useRef(null);
 
@@ -13,10 +15,10 @@ function App() {
     inputEl.current.value = "";
     setInputVal("");
 
-    setTodos([...todos, { title: inputVal, subtasks: [] }])
+    setTodos([...todos, { title: inputVal, status:"pending", subtasks: [] }])
     
     postData("http://localhost:5000/add-todo", { title: inputVal })
-      .then((data) => console.log("fromAPI", data))
+      .then((data) => setTodos([...todos, data]))
   }
 
   const updateTodo = (id, todo)=>{
@@ -41,9 +43,7 @@ function App() {
             placeholder="Enter todo" />
           <button onClick={addTodo}>Create Todo</button>
         </div>
-        {todos.map((todo, i) => <Todo
-          updateTodo={(_id, todo) => updateTodo(_id, todo)}
-          todo={todo} key={i} />)}
+        {todos.map((todo, i) =><Todo updateTodo={updateTodo}  key={i} todo={todo}/>)}
       </section>
     </div>
   );
