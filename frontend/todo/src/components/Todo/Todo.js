@@ -27,7 +27,7 @@ function Todo({ todo, updateTodo }) {
 
         postData("http://localhost:5000/add-subtask", { _id: todo._id, title: inputVal })
             .then((data) => setSubtasks([...data.subtasks]))
-            .catch(err=>console.log(err))
+            .catch(err => console.log(err))
 
         //reseting input field
         inputEl.current.value = "";
@@ -46,9 +46,13 @@ function Todo({ todo, updateTodo }) {
     return (
         <div>
             <div className="sec1">
-                <CheckBox update={(status) => updateTodoStatus(status)}
+                <section className="sec1-first">
+                    <input type="checkbox" />
+                    <p>{subtasks.title}</p>
+                </section>
+                {/* <CheckBox update={(status) => updateTodoStatus(status)}
                     title={todo.title}
-                    tasksCount={subtasks.length} doneCount={doneTasksCount} />
+                    tasksCount={subtasks.length} doneCount={doneTasksCount} /> */}
                 <section className="sec1-second">
                     {subtasks.length > 0 && <p>{doneTasksCount} completed of {subtasks.length}</p>}
                     {show === "none" ? <i onClick={() => setShow("block")}

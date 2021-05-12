@@ -9,7 +9,9 @@ app.use(cors())
 app.use(require("./api"));
 
 //connecting to mongodb database
-const db = "mongodb://localhost/todos";
+const db = process.env.db || 
+"mongodb+srv://peter:ootou_test@cluster0.7wjw7.mongodb.net/todo?retryWrites=true&w=majority"
+
 mongoose.connect(db,
 { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>console.log("connected successfully to mongodb db"))

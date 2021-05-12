@@ -22,7 +22,7 @@ function App() {
     setTodos([...todos, { title: inputVal, status:"pending", subtasks: [] }])
     
     postData("http://localhost:5000/add-todo", { title: inputVal })
-      .then((data) => setTodos([...todos, data]))
+      .then((data) => console.log(data))
       .catch(err=>console.log(err))
   }
 
