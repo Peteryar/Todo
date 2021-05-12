@@ -41,7 +41,7 @@ function Todo({ todo, updateTodo }) {
     }
     const updateSubtask = (id, task) => {
         subtasks[subtasks.findIndex(el => el._id === id)] = task;
-        setSubtasks([...subtasks]);
+        setSubtasks([...subtasks]);        
     }
     return (
         <div>
