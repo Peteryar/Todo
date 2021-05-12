@@ -19,6 +19,11 @@ function App() {
       .then((data) => console.log("fromAPI", data))
   }
 
+  const updateTodo = (id, todo)=>{
+    todos[todos.findIndex(el => el._id === id)]= todo;
+    setTodos([...todos]);
+  }
+
   useEffect(()=>{
     fetch(`http://localhost:5000/todos`)
     .then(response => response.json())
@@ -37,7 +42,7 @@ function App() {
           <button onClick={addTodo}>Create Todo</button>
         </div>
         {todos.map((todo, i) => <Todo
-          //updateTodos={(_id, todo) => updateTodo(_id, todo)}
+          updateTodo={(_id, todo) => updateTodo(_id, todo)}
           todo={todo} key={i} />)}
       </section>
     </div>
